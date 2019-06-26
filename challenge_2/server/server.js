@@ -21,7 +21,9 @@ app.post('/', (req, res) => {
       console.error("ERROR: ", err);
       res.end();
     } else {
-      res.status(201).send(treeSearch(JSON.parse(data)));
+      var newData = JSON.parse(data);
+      newData.children.push(req.body);
+      res.status(201).send(treeSearch(newData));
     }
   })
 })
