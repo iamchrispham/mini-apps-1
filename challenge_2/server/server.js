@@ -9,6 +9,8 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, '../client')));
 
+
+
 app.get('/', (req, res) => {
   res.status(200).send('GET REQ!');
 })
@@ -19,22 +21,42 @@ app.post('/', (req, res) => {
       console.error("ERROR: ", err);
       res.end();
     } else {
-      console.log('DATA:', data);
-      // need to create a recursive function to go through tree
-      // go through data of tree
-      // break down each object of the tree
-      // send as CSV data back to client
-      res.status(201).send(data);
+      res.status(201).send(treeSearch(JSON.parse(data)));
     }
   })
-  var { firstName, lastName, county, city, role, sales } = req.body
-  console.log('test:', req.body);
-  // res.status(201).send(req.body)
 })
 
-app.listen(port, () => { console.log(`Listening to port ${port}...`)})
+app.listen(port, () => { console.log(`Listening to port ${port}...`) })
 
 const filePath = path.join(__dirname, "../samples/sales_report.json")
 console.log('FILEPATH to SALES_REPORT:', filePath);
 
 
+// auxiliary function
+var treeSearch = (tree, array) => {
+  var newArr = array || [];
+
+  if (newArr.length === 0) { // push in parent node
+    var tempArr = [];
+    for (var node in tree) {
+      if (!Array.isArray(tree[node])) {
+        tempArr.push(tree[node]);
+      }
+    }
+    newArr.push(tempArr.join(','));
+  }
+
+  for (var i = 0; i < tree.children.length; i++) { // push in children
+    var tempArr = [tree.children[i]['firstName'],
+      tree.children[i]['lastName'],
+      tree.children[i]['county'],
+      tree.children[i]['city'],
+      tree.children[i]['role'],
+      tree.children[i]['sales']
+    ];
+    var str = tempArr.join(',');
+    newArr.push(str);
+    treeSearch(tree.children[i], newArr);
+  }
+  return newArr;
+}
