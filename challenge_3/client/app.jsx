@@ -42,7 +42,11 @@ class App extends React.Component {
 
     } else { // post data and render back to form 1
 
+
+      // revert count back to 0
+      count = 0;
     }
+    console.log('COUNT:', count);
     this.setState({
       count: count
     })
