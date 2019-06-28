@@ -15,7 +15,6 @@ class App extends React.Component {
       // kakorrhaphiophilia: 'Zeta',
       // technophilia: 'Eta',
       board: [],
-      empty: 0,
       currentMove: 1, // cycle between 1 and 2 for player 1 and 2
       x: 0,
       y: 0
@@ -48,7 +47,7 @@ class App extends React.Component {
       var board = updateBoard(this.state.board, x, y, currentMove); // should return object with board and x,y found
       var currImg = '';
       if (board !== undefined) {
-        // console.log('BOARD AFTER SEARCH COL', board);
+        // console.log('BOARD AFTER UPDATEBOARD', board);
         console.log('Checking for win:', checkWinner(board, currentMove));
         currentMove = togglePlayer(currentMove); // turn-change
 

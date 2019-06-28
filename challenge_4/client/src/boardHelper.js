@@ -25,7 +25,7 @@ var updateBoard = (board, x, y, currentMove) => {
   }
 }
 
-var togglePlayer = (currentMove) => {
+var togglePlayer = (currentMove) => { // could technically toggle other player in updateBoard via state, but meh
   return currentMove === 1 ? 2 : 1;
 }
 

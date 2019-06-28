@@ -123,26 +123,6 @@ class App extends React.Component {
   }
 
   render() {
-    // var formOne = (
-    //   <div>
-    //     <form onSubmit={this.onHandleSubmit}>
-    //       <p>Name: <input name="name" onChange={(e) => this.onHandleChange(e, 'name')}
-    //         value={this.state.contact.name}
-    //       ></input></p>
-
-    //       <p>E-mail: <input name="email" onChange={(e) => this.onHandleChange(e, 'email')}
-    //         value={this.state.contact.email}
-    //       ></input></p>
-
-    //       <p>Password: <input name="password" type="password" onChange={(e) => this.onHandleChange(e, 'password')}
-    //         value={this.state.contact.password}
-    //       ></input></p>
-
-    //       <button onClick={this.enableFormTwo}>Next</button>
-    //     </form>
-    //   </div>
-    // );
-
     return (
       <div>
         REACT AAAAAAAAAAAAAAAAAAAAAAPPP

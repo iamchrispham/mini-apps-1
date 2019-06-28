@@ -5,7 +5,7 @@ const Board = ( props ) => {
   if (!props.board) { // in-case component tries to render before data is fetched
     return null;
   } else {
-    var { board } = props;
+    var { board } = props; // upon re-render
   }
   return ( // HTML STARTS HERE
     <div>

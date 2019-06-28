@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-class Square extends React.Component {
-  constructor(props) {
+class Square extends React.Component { // technically doesn't need to be a stateful component
+  constructor(props) {                  // due to generic rendering from parent class
     super(props);
     this.state = {
       isActive: false,
@@ -13,8 +13,6 @@ class Square extends React.Component {
   }
 
   componentDidMount() { // set board-coordinates for each square
-    console.log('PROPS AT SQUARE:', this.props);
-
     this.setState({
       x: this.props.x,
       y: this.props.y
@@ -22,8 +20,7 @@ class Square extends React.Component {
   }
   //find a way to activate a square, then transpose to dropping a piece
   togglePiece() {
-    // console.log(`Square at coordinate (${this.state.x}, ${this.state.y})`);
-    console.log(`Attempting to toggle at coordinates: ${this.state.x}, ${this.state.y}`);
+    console.log(`Clicked on coordinates: ${this.state.x}, ${this.state.y}`);
     var bool = true;
     // update 6x7 matrix-array using dropPiece()
     this.props.dropPiece(this.state.x, this.state.y);
