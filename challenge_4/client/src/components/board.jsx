@@ -1,11 +1,11 @@
 import React from 'react';
 import Row from './row.jsx';
 
-const Board = ({ newBoard }) => {
-  if (!newBoard.board) { // in-case component tries to render before data is fetched
+const Board = ( props ) => {
+  if (!props.board) { // in-case component tries to render before data is fetched
     return null;
   } else {
-    var { board } = newBoard;
+    var { board } = props;
   }
   return ( // HTML STARTS HERE
     <div>
@@ -13,7 +13,7 @@ const Board = ({ newBoard }) => {
         <tbody>
           {board.map((row, i) => {
             return (
-              <Row row={row} y={i} />
+              <Row row={row} y={i} dropPiece={props.dropPiece}/>
             )
           }
           )}

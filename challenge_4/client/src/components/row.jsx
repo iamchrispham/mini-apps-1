@@ -9,7 +9,7 @@ const Row = (props) => {
     <tr id={`row-${props.y}`}>
       {props.row.map((col, i) => {
         return (
-          <Square x={i} y={props.y} />
+          <Square x={i} y={props.y} dropPiece={props.dropPiece}/>
         )
       })}
     </tr>
