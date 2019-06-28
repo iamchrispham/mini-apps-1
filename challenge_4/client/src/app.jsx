@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Board from './components/board.jsx';
-import { searchCol, togglePlayer, isValidCoordinates, checkWinner } from './boardHelper.js';
+import { updateBoard, togglePlayer, isValidCoordinates, checkWinner } from './boardHelper.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +26,6 @@ class App extends React.Component {
 
   componentDidMount() {
     var board = this.createBoard();
-
     this.setState({
       board: board
     });
@@ -46,11 +45,13 @@ class App extends React.Component {
   dropPiece(x, y) {
     if (isValidCoordinates(x, y)) {
       var { currentMove } = this.state;
-      var board = searchCol(this.state.board, x, y, currentMove); // should return object with board and x,y found
+      var board = updateBoard(this.state.board, x, y, currentMove); // should return object with board and x,y found
       var currImg = '';
       if (board !== undefined) {
-        console.log('BOARD AFTER SEARCH COL', board);
+        // console.log('BOARD AFTER SEARCH COL', board);
+        console.log('Checking for win:', checkWinner(board, currentMove));
         currentMove = togglePlayer(currentMove); // turn-change
+
         this.setState({
           board: board['board'],
           currentMove: currentMove,
@@ -64,7 +65,6 @@ class App extends React.Component {
           currImg = 'O';
         }
         render(currImg, document.getElementById(`square-${board['x']}-${board['y']}`));
-        checkWinner(board);
       }
     }
     return;
