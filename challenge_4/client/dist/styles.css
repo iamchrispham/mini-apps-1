@@ -9,10 +9,16 @@ table.blueTable {
 table.blueTable td, table.blueTable th {
   border: 1px solid #AAAAAA;
   padding: 3px 2px;
+  width: 82.857px;
+  height: 83.33px;
 }
 table.blueTable tbody td {
   font-size: 13px;
 }
 table.blueTable tr:nth-child(even) {
   background: #D0E4F5;
+}
+
+#square {
+  color: red;
 }
